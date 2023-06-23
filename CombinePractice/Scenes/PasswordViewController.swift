@@ -14,7 +14,7 @@ class PasswordViewController: UIViewController {
     @IBOutlet weak var passwordConfirmTextField: UITextField!
     @IBOutlet weak var confirmBtn: UIButton!
     
-    let viewModel = MyVM()
+    let viewModel = PasswordViewModel()
     var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -28,6 +28,15 @@ class PasswordViewController: UIViewController {
 private extension PasswordViewController {
     func configure() {
         navigationItem.title = "비밀번호 매치"
+        
+        let leftBarBtn = UIBarButtonItem(
+            title: "연쇄 호출",
+            style: .plain,
+            target: self,
+            action: #selector(didTappedLeftBarBtn)
+        )
+        navigationItem.leftBarButtonItem = leftBarBtn
+        
         let rightBarBtn = UIBarButtonItem(
             title: "디바운스",
             style: .plain,
@@ -55,6 +64,13 @@ private extension PasswordViewController {
             .receive(on: DispatchQueue.main)
             .assign(to: \.isValid, on: confirmBtn)
             .store(in: &subscriptions)
+    }
+    
+    @objc func didTappedLeftBarBtn() {
+        guard let debounceVC = storyboard?.instantiateViewController(
+            withIdentifier: Api_tutorialViewController.identifier
+        ) as? Api_tutorialViewController else { return }
+        navigationController?.pushViewController(debounceVC, animated: true)
     }
     
     @objc func didTappedRightBarBtn() {

@@ -1,5 +1,5 @@
 //
-//  MyVM.swift
+//  PasswordViewModel.swift
 //  CombinePractice
 //
 //  Copyright (c) 2023 oasis444. All right reserved.
@@ -8,15 +8,15 @@
 import Foundation
 import Combine
 
-final class MyVM {
+final class PasswordViewModel {
     @Published var passwordInput: String = "" {
         didSet {
-//            print("MyVM / passwordInput: \(passwordInput)")
+//            print("PasswordViewModel / passwordInput: \(passwordInput)")
         }
     }
     @Published var passwordConfirmInput: String = "" {
         didSet {
-//            print("MyVM / passwordConfirmInput: \(passwordInput)")
+//            print("PasswordViewModel / passwordConfirmInput: \(passwordInput)")
         }
     }
     

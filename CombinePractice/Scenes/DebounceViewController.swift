@@ -12,7 +12,7 @@ class DebounceViewController: UIViewController {
     
     @IBOutlet weak var myLabel: UILabel!
     
-    static let identifier = "DebounceViewController"
+    static let identifier: String = "DebounceViewController"
     var subscriptions = Set<AnyCancellable>()
     
     private lazy var searchController: UISearchController = {
